@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { flexbox } from "@styles/commonStyles";
-import { font12, font14, font16 } from "@styles/fonts";
+import styled from 'styled-components';
+import { flexbox } from '@styles/commonStyles';
+import { font12, font14, font16 } from '@styles/fonts';
 
 export interface Wrapper {
   width: number | string;
@@ -14,10 +14,13 @@ export const CardWrapper = styled.div<Wrapper>`
     ${({ theme }) => `${theme.gap.base * 4}px`};
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => `${theme.size.borderRadius}px`};
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.colors.skyBlue};
+  }
 `;
 
 export const TitleBox = styled.div`
-  ${flexbox({ jc: "between" })};
+  ${flexbox({ jc: 'between' })};
   ${font16(700)};
 `;
 

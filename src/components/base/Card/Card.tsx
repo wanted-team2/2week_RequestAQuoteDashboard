@@ -1,5 +1,6 @@
-import React, { ReactElement } from "react";
-import * as S from "./Style";
+import React, { ReactElement } from 'react';
+import { Buttons } from '@components/base';
+import * as S from './Style';
 
 export interface RequestsType {
   id?: number;
@@ -24,7 +25,7 @@ export const Card = ({ requests, width, height }: CardProps): ReactElement => {
     <S.CardWrapper key={requests?.id} width={width} height={height}>
       <S.TitleBox>
         <div>{requests.title}</div>
-        {requests?.status === "상담중" && (
+        {requests?.status === '상담중' && (
           <S.ConsultingButton>상담중</S.ConsultingButton>
         )}
       </S.TitleBox>
@@ -43,7 +44,7 @@ export const Card = ({ requests, width, height }: CardProps): ReactElement => {
         <S.Content1>가공방식</S.Content1>
         <S.Content2>
           {requests?.method?.map(
-            (text, i) => text + (i + 1 !== requests?.method?.length ? "," : "")
+            (text, i) => text + (i + 1 !== requests?.method?.length ? ',' : '')
           )}
         </S.Content2>
       </S.CardContent>
@@ -52,11 +53,13 @@ export const Card = ({ requests, width, height }: CardProps): ReactElement => {
         <S.Content2>
           {requests?.material?.map(
             (text, i) =>
-              text + (i + 1 !== requests?.material?.length ? "," : "")
+              text + (i + 1 !== requests?.material?.length ? ',' : '')
           )}
         </S.Content2>
       </S.CardContent>
-      <S.ButtonWrapper>{/* <button></button> */}</S.ButtonWrapper>
+      <S.ButtonWrapper>
+        <Buttons />
+      </S.ButtonWrapper>
     </S.CardWrapper>
   );
 };
