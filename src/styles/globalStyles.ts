@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import reset from 'styled-reset';
+import { createGlobalStyle } from "styled-components";
+import reset from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
 ${reset}
@@ -10,7 +10,7 @@ ${reset}
 
 html, body {
 	background-color: #fff;
-	font-family: apple-system, system-ui, Dotum,'돋움',Helvetica,"Apple SD Gothic Neo",sans-serif; 
+	font-family: 'Noto Sans KR',system-ui, Dotum,'돋움', Helvetica, "Apple SD Gothic Neo", sans-serif; 
 }
 
 a {
@@ -22,7 +22,7 @@ button {
 	cursor: pointer;
 }
 
-ol, ui, li {
+ol, ul, li {
 	list-style: none;
 }
 
