@@ -7,8 +7,18 @@ const colors = {
   warning: "##FFA000",
 };
 
+const size = {
+  borderRadius: 4,
+};
+
+const gap = {
+  base: 4,
+};
+
 const theme = {
   colors,
+  size,
+  gap,
 };
 
 export type Theme = typeof theme;

@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
+import theme from "./theme";
 
 const GlobalStyle = createGlobalStyle`
 ${reset}
@@ -9,6 +10,7 @@ ${reset}
 }
 
 html, body {
+	color: ${theme.colors.primary};
 	background-color: #fff;
 	font-family: 'Noto Sans KR',system-ui, Dotum,'돋움', Helvetica, "Apple SD Gothic Neo", sans-serif; 
 }
