@@ -1,13 +1,19 @@
-import { ChangeEvent, ForwardedRef, forwardRef } from 'react';
+import {
+  ChangeEvent,
+  ForwardedRef,
+  forwardRef,
+  ReactChild,
+  ReactChildren,
+} from 'react';
 import useToggle from '@hooks/useToggle';
 import * as S from './Style';
 
 interface ForwardProps {
-  isToggle: false;
-  disabled: false;
-  onChange(e: ChangeEvent<HTMLInputElement>): void;
-  children?: string;
-  [propName: string]: any;
+  isToggle?: false;
+  disabled?: false;
+  onChange?(e: ChangeEvent<HTMLInputElement>): void;
+  children?: ReactChild | ReactChildren;
+  name?: string;
 }
 
 const Toggle = forwardRef(
