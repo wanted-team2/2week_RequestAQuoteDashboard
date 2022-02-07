@@ -57,5 +57,10 @@
   },
   "resolutions": {
     "styled-components": "^5"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-emoji"
+    }
   }
 }
