@@ -1,8 +1,25 @@
 import React, { ReactElement } from "react";
 import * as S from "./Style";
-import * as I from "./Interfaces";
 
-function Card({ requests, width, height }: I.CardProps): ReactElement {
+export interface RequestsType {
+  id?: number;
+  title?: string;
+  client?: string;
+  due?: string | Date;
+  count?: number;
+  amount?: number;
+  method?: string[];
+  material?: string[];
+  status?: string;
+}
+
+export interface CardProps {
+  requests: RequestsType;
+  width: number | string;
+  height: number | string;
+}
+
+export const Card = ({ requests, width, height }: CardProps): ReactElement => {
   return (
     <S.CardWrapper key={requests?.id} width={width} height={height}>
       <S.TitleBox>
@@ -42,6 +59,6 @@ function Card({ requests, width, height }: I.CardProps): ReactElement {
       <S.ButtonWrapper>{/* <button></button> */}</S.ButtonWrapper>
     </S.CardWrapper>
   );
-}
+};
 
 export default Card;

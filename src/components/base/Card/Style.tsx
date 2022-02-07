@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import { flexbox } from "@styles/commonStyles";
 import { font12, font14, font16 } from "@styles/fonts";
-import * as I from "./Interfaces";
 
-export const CardWrapper = styled.div<I.Wrapper>`
+export interface Wrapper {
+  width: number | string;
+  height: number | string;
+}
+
+export const CardWrapper = styled.div<Wrapper>`
   width: ${({ width }) => `${width}px`};
   height: ${({ height }) => `${height}px`};
   padding: ${({ theme }) => `${theme.gap.base * 6}px`}
