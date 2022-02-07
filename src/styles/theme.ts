@@ -4,7 +4,8 @@ const colors = {
   blue: "#1565C0",
   skyBlue: "#2196F3",
   lightBlue: "#BBDEFB",
-  warning: "##FFA000",
+  warning: "#FFA000",
+  border: "#E5E5E5",
 };
 
 const size = {
