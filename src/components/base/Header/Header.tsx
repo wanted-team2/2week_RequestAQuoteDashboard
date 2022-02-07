@@ -49,7 +49,4 @@ const Header = ({companyName = 'A 가공 업체'} : HeaderProps) => {
   )
 }
 
-Header.propTypes = {
-}
-
 export default Header
