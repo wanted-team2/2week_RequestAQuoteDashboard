@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Dropdown } from "@components/base";
+import { getTrutyObjectLength, setAllValueToFalse } from "@utils/functions";
 import { icoRefresh } from "@assets";
 import * as S from "./Style";
 
@@ -10,16 +11,39 @@ const datas = {
 
 export type FilterType = "method" | "material";
 
-export type NodeListType = NodeListOf<Element> | never[] | undefined;
+export type objectTypes = {
+  [key: string]: boolean;
+};
 
 const Dropdowns = () => {
-  const [methodList, setMethodList] = useState<NodeListType>([]);
-  const [materialList, setMaterialList] = useState<NodeListType>([]);
+  const [methodList, setMethodList] = useState<objectTypes>({
+    선반: false,
+    밀링: false,
+  });
+  const [materialList, setMaterialList] = useState<objectTypes>({
+    알루미늄: false,
+    탄소강: false,
+    구리: false,
+    합금강: false,
+    강철: false,
+  });
   const [hasList, setHasList] = useState(false);
+
+  const onChange = () => {
+    console.log("hi");
+  };
+
+  const onReset = () => {
+    setMethodList({ ...setAllValueToFalse(methodList) });
+    setMaterialList({ ...setAllValueToFalse(materialList) });
+  };
 
   useEffect(() => {
     if (methodList && materialList) {
-      if (methodList.length === 0 && materialList.length === 0) {
+      if (
+        getTrutyObjectLength(methodList) === 0 &&
+        getTrutyObjectLength(materialList) === 0
+      ) {
         setHasList(false);
       } else setHasList(true);
     }
@@ -27,18 +51,27 @@ const Dropdowns = () => {
 
   return (
     <S.DropdownsWrapper>
-      <Dropdown
-        filterType="method"
-        dataList={datas["method"]}
-        setMethodList={setMethodList}
-      />
-      <Dropdown
-        filterType="material"
-        dataList={datas["material"]}
-        setMaterialList={setMaterialList}
-      />
+      {React.Children.toArray(
+        Object.keys(datas).map((type) => {
+          const filteredType = type as FilterType;
+
+          return (
+            <Dropdown
+              filterType={filteredType}
+              dataList={filteredType === "method" ? methodList : materialList}
+              onChange={onChange}
+              setMethodList={
+                filteredType === "method" ? setMethodList : undefined
+              }
+              setMaterialList={
+                filteredType === "material" ? setMaterialList : undefined
+              }
+            />
+          );
+        })
+      )}
       {hasList && (
-        <S.ResetButton>
+        <S.ResetButton onClick={onReset}>
           <img src={icoRefresh} alt="필터링 리셋" />
           <span>필터링 리셋</span>
         </S.ResetButton>

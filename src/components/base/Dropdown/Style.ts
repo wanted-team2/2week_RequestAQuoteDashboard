@@ -1,11 +1,9 @@
 import styled from "styled-components";
-import { FilterType } from "@components/domain/Dropdowns/Dropdowns";
 import { font12, font14 } from "@styles/fonts";
 import { flexbox } from "@styles/commonStyles";
-import { check } from "prettier";
 
 interface FormProps {
-  checkedList: NodeListOf<Element> | never[];
+  checkedList: number;
 }
 
 export const Form = styled.form<FormProps>`
@@ -18,7 +16,7 @@ export const Form = styled.form<FormProps>`
   border: ${({ theme }) => `1px solid ${theme.colors.gray}`};
   border-radius: ${({ theme }) => `${theme.size.borderRadius}px`};
   background-color: ${({ checkedList, theme }) =>
-    checkedList.length > 0 ? theme.colors.blue : "white"};
+    checkedList > 0 ? theme.colors.blue : "white"};
   cursor: pointer;
 
   font-family: "Roboto", sans-serif;
@@ -27,13 +25,12 @@ export const Form = styled.form<FormProps>`
 
   span {
     padding-right: ${({ theme }) => `${theme.gap.base * 3}px`};
-    color: ${({ checkedList }) =>
-      checkedList.length > 0 ? "white" : "inherit"};
+    color: ${({ checkedList }) => (checkedList > 0 ? "white" : "inherit")};
   }
 
   svg {
     fill: ${({ checkedList, theme }) =>
-      checkedList.length > 0 ? "white" : theme.colors.gray};
+      checkedList > 0 ? "white" : theme.colors.gray};
   }
 
   &:hover {
