@@ -1,5 +1,5 @@
 import * as S from './Style';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, EmptyBox, Header, Toggle } from '@components/base';
 import { Dropdowns } from '@components/domain';
 import { ICardData } from '@models/CardData';
@@ -28,10 +28,7 @@ const Home = () => {
   };
 
   const filteredCard =
-    data &&
-    (isToggle
-      ? data?.filter((v) => v.status === '상담중')
-      : filterCard(data, methodList, materialList));
+    data && filterCard(data, methodList, materialList, isToggle);
 
   return (
     <S.HomeWrapper>
