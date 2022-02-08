@@ -1,13 +1,13 @@
-import React, { useEffect, useState, useRef, useMemo } from "react";
-import { Dropbox } from "@components/base";
+import React, { useEffect, useState, useRef, useMemo } from 'react';
+import { Dropbox } from '@components/base';
 import {
   FilterType,
   objectTypes,
-} from "@components/domain/Dropdowns/Dropdowns";
-import { ReactComponent as ArrowDropdown } from "@assets/arrowDropdown.svg";
-import { getTrutyObjectLength } from "@utils/functions";
-import { useToggle, useClickAway } from "@hooks";
-import * as S from "./Style";
+} from '@components/domain/Dropdowns/Dropdowns';
+import { ReactComponent as ArrowDropdown } from '@assets/arrowDropdown.svg';
+import { getTrutyObjectLength } from '@utils/functions';
+import { useToggle, useClickAway } from '@hooks';
+import * as S from './Style';
 
 interface DropdownProps {
   dataList: objectTypes;
@@ -37,7 +37,7 @@ const Dropdown = ({
   useClickAway(DropdownsRef, () => setIsToggle(false));
 
   const getFilterType = (filterType: FilterType) =>
-    filterType === "method" ? "가공방식" : "재료";
+    filterType === 'method' ? '가공방식' : '재료';
 
   const filterTypeToKorean = useMemo(
     () => getFilterType(filterType),
