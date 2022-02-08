@@ -25,7 +25,7 @@ export const CardWrapper = styled.div<Wrapper>`
   }
 `;
 
-export const TitleBox = styled.div`
+export const TitleBox = styled.header`
   ${flexbox({ jc: 'between' })};
   ${font16(700)};
 `;
@@ -38,7 +38,7 @@ export const ConsultingButton = styled.button`
   ${font12(500)}
 `;
 
-export const Client = styled.div`
+export const Client = styled.p`
   margin-top: ${({ theme }) => `${theme.gap.base}px`};
   margin-bottom: ${({ theme }) => `${theme.gap.base * 6}px`};
   ${font14(500)}
@@ -55,10 +55,10 @@ export const Hr = styled.hr`
   margin-bottom: ${({ theme }) => `${theme.gap.base * 8}px`};
 `;
 
-export const CardContent = styled.div`
+export const CardContent = styled.section`
   margin-bottom: ${({ theme }) => `${theme.gap.base * 2}px`};
 `;
-export const Content1 = styled.div`
+export const Content1 = styled.strong`
   max-width: 70px;
   min-width: 70px;
   height: 20px;
@@ -72,6 +72,6 @@ export const Content2 = styled.span`
   ${font14(700)}
 `;
 
-export const ButtonWrapper = styled.div`
+export const ButtonWrapper = styled.section`
   margin-top: ${({ theme }) => `${theme.gap.base * 6}px`};
 `;
