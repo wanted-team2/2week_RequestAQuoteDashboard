@@ -67,3 +67,16 @@ export const filterCard = (
       v.material.filter((char) => checkedMaterial.includes(char)).length
   );
 };
+
+export const makeCheckList = (
+  data: ICardData[] | null | undefined,
+  type: 'method' | 'material'
+) =>
+  data
+    ? data.reduce((checkList, v) => {
+        v[type].forEach((methodItem) => {
+          checkList[methodItem] = false;
+        });
+        return checkList;
+      }, {} as objectTypes)
+    : {};
