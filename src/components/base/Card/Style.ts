@@ -21,11 +21,16 @@ export const CardWrapper = styled.div<Wrapper>`
   }
 
   &:nth-child(3n) {
-    margin-right: 0;
+    margin-right: 0px;
+  }
+
+  @media ${({ theme }) => theme.device.desktop} {
+    &:nth-child(3n) {
+      margin-right: ${({ theme }) => `${theme.gap.base * 4}px`};
+    }
   }
 
   @media ${({ theme }) => theme.device.mobile} {
-    margin-right: 0px;
     width: 320px;
     height: 344px;
   }

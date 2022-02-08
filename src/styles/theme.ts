@@ -18,6 +18,7 @@ const size = {
 
 const device = {
   mobile: `(max-width: 768px)`,
+  desktop: `(max-width: 1440px)`,
 };
 
 const gap = {
