@@ -81,8 +81,6 @@ $ yarn start:dev // localhost 싫행
 │   ├── robots.txt
 │   └── static
 ├── config-overrides.js
-├── mock
-│   └── db.json
 ├── package.json
 ├── public
 │   ├── index.html
