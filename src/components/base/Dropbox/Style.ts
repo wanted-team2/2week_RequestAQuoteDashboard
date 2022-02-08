@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import { flexbox } from "@styles/commonStyles";
-import { font14 } from "@styles/fonts";
+import styled from 'styled-components';
+import { flexbox } from '@styles/commonStyles';
+import { font14 } from '@styles/fonts';
 
 export const Dropbox = styled.div`
-  ${flexbox({ fd: "column", ai: "start" })};
+  ${flexbox({ fd: 'column', ai: 'start' })};
   position: absolute;
   top: 32px;
   left: 0;
@@ -17,6 +17,6 @@ export const Dropbox = styled.div`
 `;
 
 export const DropboxSet = styled.div`
-  ${flexbox({ jc: "start", ai: "center" })};
+  ${flexbox({ jc: 'start', ai: 'center' })};
   gap: 10px;
 `;
