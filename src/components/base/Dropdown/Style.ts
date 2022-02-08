@@ -36,4 +36,12 @@ export const Form = styled.form<FormProps>`
   &:hover {
     border-color: ${({ theme }) => theme.colors.skyBlue};
   }
+
+  @media ${({ theme }) => theme.device.mobile} {
+    ${({ checkedList }) => checkedList > 0 && 'padding: 0px 8px'};
+
+    span {
+      padding-right: ${({ theme }) => `${theme.gap.base * 2}px`};
+    }
+  }
 `;
