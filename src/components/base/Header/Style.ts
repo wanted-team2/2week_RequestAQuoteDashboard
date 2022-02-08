@@ -4,11 +4,9 @@ import { font14 } from '@styles/fonts';
 
 export const HeaderWrapper = styled.div`
   ${boxShadow};
-  ${flexbox({ jc: 'between' })};
   position: fixed;
   left: 0;
   top: 0;
-  padding: 25px 40px;
   width: 100%;
   height: 70px;
   z-index: 3;
@@ -16,7 +14,18 @@ export const HeaderWrapper = styled.div`
   color: ${({ theme }) => theme.colors.white};
   @media ${({ theme }) => theme.device.mobile} {
     height: 44px;
-    padding: 16px 10px;
+  }
+`;
+
+export const HeaderInner = styled.div`
+  ${flexbox({ jc: 'between' })};
+  max-width: 1440px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 25px 40px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    padding: 10px 20px;
   }
 `;
 
