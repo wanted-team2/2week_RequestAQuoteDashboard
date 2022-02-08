@@ -20,6 +20,8 @@ export const HeaderWrapper = styled.div`
   }
 `;
 
+export const HamburgerContainer = styled.div``;
+
 export const HeaderRight = styled.div`
   ${flexbox({})};
 
