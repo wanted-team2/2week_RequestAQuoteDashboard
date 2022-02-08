@@ -1,6 +1,6 @@
-import { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
-import theme from "./theme";
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
+import theme from './theme';
 
 const GlobalStyle = createGlobalStyle`
 ${reset}
@@ -32,6 +32,12 @@ img {
 	display: block;
 	width: 100%;
 	height: 100%;
+}
+
+button {
+	display: inline-block;
+	background: transparent;
+	border: none;
 }
 `;
 
