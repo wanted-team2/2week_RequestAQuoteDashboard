@@ -4,6 +4,7 @@ import { font14 } from '@styles/fonts';
 
 export const Dropbox = styled.div`
   ${flexbox({ fd: 'column', ai: 'start' })};
+  z-index: 1;
   position: absolute;
   top: 32px;
   left: 0;
