@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Dropdown } from "@components/base";
-import { getTrutyObjectLength, setAllValueToFalse } from "@utils/functions";
 import { icoRefresh } from "@assets";
+import { getTrutyObjectLength, setAllValueToFalse } from "@utils/functions";
 import * as S from "./Style";
 
 const datas = {
@@ -29,10 +29,6 @@ const Dropdowns = () => {
   });
   const [hasList, setHasList] = useState(false);
 
-  const onChange = () => {
-    console.log("hi");
-  };
-
   const onReset = () => {
     setMethodList({ ...setAllValueToFalse(methodList) });
     setMaterialList({ ...setAllValueToFalse(materialList) });
@@ -59,7 +55,6 @@ const Dropdowns = () => {
             <Dropdown
               filterType={filteredType}
               dataList={filteredType === "method" ? methodList : materialList}
-              onChange={onChange}
               setMethodList={
                 filteredType === "method" ? setMethodList : undefined
               }

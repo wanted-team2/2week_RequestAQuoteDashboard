@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
+import { Dropbox } from "@components/base";
 import {
   FilterType,
   objectTypes,
 } from "@components/domain/Dropdowns/Dropdowns";
 import { ReactComponent as ArrowDropdown } from "@assets/arrowDropdown.svg";
 import { getTrutyObjectLength } from "@utils/functions";
-import { useToggle } from "@hooks";
+import { useToggle, useClickAway } from "@hooks";
 import * as S from "./Style";
 
 interface DropdownProps {
   dataList: objectTypes;
   filterType: FilterType;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   setMethodList?: React.Dispatch<
     React.SetStateAction<{
       [key: string]: boolean;
@@ -27,64 +27,41 @@ interface DropdownProps {
 const Dropdown = ({
   dataList = {},
   filterType,
-  onChange,
   setMethodList,
   setMaterialList,
 }: DropdownProps) => {
-  const { isToggle, onToggle } = useToggle(false);
+  const DropdownsRef = useRef(null);
+  const { isToggle, setIsToggle, onToggle } = useToggle(false);
   const [checkedList, setCheckedList] = useState(0);
+
+  useClickAway(DropdownsRef, () => setIsToggle(false));
 
   const getFilterType = (filterType: FilterType) =>
     filterType === "method" ? "가공방식" : "재료";
 
-  const onInputChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const { value } = e.currentTarget;
-    if (filterType === "method" && setMethodList) {
-      setMethodList((prev) => ({
-        ...prev,
-        [value]: !prev[value],
-      }));
-    }
-    if (filterType === "material" && setMaterialList) {
-      setMaterialList((prev) => ({
-        ...prev,
-        [value]: !prev[value],
-      }));
-    }
-  };
+  const filterTypeToKorean = useMemo(
+    () => getFilterType(filterType),
+    [filterType]
+  );
 
   useEffect(() => {
     setCheckedList(getTrutyObjectLength(dataList));
   }, [dataList]);
 
   return (
-    <S.Form onClick={onToggle} checkedList={checkedList}>
+    <S.Form onClick={onToggle} checkedList={checkedList} ref={DropdownsRef}>
       <span>
-        {getFilterType(filterType)}
+        {filterTypeToKorean}
         {checkedList > 0 && `(${checkedList})`}
       </span>
       <ArrowDropdown />
       {isToggle && (
-        <S.Dropbox onClick={(e) => e.stopPropagation()}>
-          {React.Children.toArray(
-            Object.entries(dataList).map(([type, checked]) => {
-              const isChecked = checked as boolean;
-              return (
-                <S.DropboxSet>
-                  <input
-                    onChange={onInputChange}
-                    type="checkbox"
-                    checked={isChecked}
-                    id={type}
-                    name={filterType}
-                    value={type}
-                  />
-                  <label htmlFor={type}>{type}</label>
-                </S.DropboxSet>
-              );
-            })
-          )}
-        </S.Dropbox>
+        <Dropbox
+          filterType={filterType}
+          dataList={dataList}
+          setMethodList={setMethodList}
+          setMaterialList={setMaterialList}
+        />
       )}
     </S.Form>
   );
