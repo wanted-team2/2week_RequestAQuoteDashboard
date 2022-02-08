@@ -3,21 +3,21 @@ import { Buttons } from '@components/base';
 import * as S from './Style';
 
 export interface RequestsType {
-  id?: number;
-  title?: string;
-  client?: string;
-  due?: string | Date;
-  count?: number;
-  amount?: number;
-  method?: string[];
-  material?: string[];
-  status?: string;
+  id: number;
+  title: string;
+  client: string;
+  due: string | Date;
+  count: number;
+  amount: number;
+  method: string[];
+  material: string[];
+  status: string;
 }
 
 export interface CardProps {
-  requests: RequestsType;
-  width: number | string;
-  height: number | string;
+  requests: Partial<RequestsType>;
+  width: number;
+  height: number;
 }
 
 export const Card = ({ requests, width, height }: CardProps): ReactElement => {
@@ -42,20 +42,11 @@ export const Card = ({ requests, width, height }: CardProps): ReactElement => {
       </S.CardContent>
       <S.CardContent>
         <S.Content1>가공방식</S.Content1>
-        <S.Content2>
-          {requests?.method?.map(
-            (text, i) => text + (i + 1 !== requests?.method?.length ? ',' : '')
-          )}
-        </S.Content2>
+        <S.Content2>{requests?.method?.join(',')}</S.Content2>
       </S.CardContent>
       <S.CardContent>
         <S.Content1>재료</S.Content1>
-        <S.Content2>
-          {requests?.material?.map(
-            (text, i) =>
-              text + (i + 1 !== requests?.material?.length ? ',' : '')
-          )}
-        </S.Content2>
+        <S.Content2>{requests?.material?.join(',')}</S.Content2>
       </S.CardContent>
       <S.ButtonWrapper>
         <Buttons />
