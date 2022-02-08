@@ -25,9 +25,6 @@ const Home = () => {
   });
 
   const filteredCard = data && filterCard(data, methodList, materialList);
-  useEffect(() => {
-    const total = { method: { ...methodList }, material: { ...materialList } };
-  }, [methodList, materialList]);
 
   return (
     <S.HomeWrapper>

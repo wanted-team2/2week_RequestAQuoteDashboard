@@ -12,12 +12,17 @@ export const CardWrapper = styled.div<Wrapper>`
   height: ${({ height }) => `${height}px`};
   padding: ${({ theme }) => `${theme.gap.base * 6}px`}
     ${({ theme }) => `${theme.gap.base * 4}px`};
+  margin-right: ${({ theme }) => `${theme.gap.base * 4}px`};
+  margin-bottom: ${({ theme }) => `${theme.gap.base * 4}px`};
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => `${theme.size.borderRadius}px`};
   &:hover {
     border: 1px solid ${({ theme }) => theme.colors.skyBlue};
   }
-  margin-bottom: 8px;
+
+  &:nth-child(3n) {
+    margin-right: 0;
+  }
 `;
 
 export const TitleBox = styled.div`

@@ -3,7 +3,9 @@ import { flexbox } from '@styles/commonStyles';
 import { font16, font20 } from '@styles/fonts';
 
 export const HomeWrapper = styled.div`
-  padding: 155px 110px;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 110px 155px;
 `;
 
 export const Title = styled.div`
@@ -22,6 +24,6 @@ export const FilterTab = styled.div`
 `;
 
 export const CardsContainer = styled.div`
-  ${flexbox({ jc: 'between', ai: 'between' })};
+  ${flexbox({ jc: 'start', ai: 'center' })};
   flex-wrap: wrap;
 `;
