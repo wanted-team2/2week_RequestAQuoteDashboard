@@ -56,7 +56,9 @@ $ yarn start
 - Dropdown, Dropdowns 컴포넌트 구현
 
 #### ✔ 고병표
-- 
+ - Card 컴포넌트 구현
+    - hover시 보더 스타일 적용
+    - status 가 '상담중'일시 상단 버튼표기 
 
 #### ✔ 유제호
 - 헤더, 반응형 구현
