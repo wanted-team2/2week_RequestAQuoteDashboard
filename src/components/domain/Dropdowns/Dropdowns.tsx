@@ -5,10 +5,7 @@ import { icoRefresh } from '@assets';
 import { getTrutyObjectLength, setAllValueToFalse } from '@utils/functions';
 import * as S from './Style';
 
-const datas = {
-  method: ['선반', '밀링'],
-  material: ['알루미늄', '탄소강', '구리', '합금강', '강철'],
-};
+const datas = ['method', 'material'] as FilterType[];
 
 interface DropdownsProps {
   methodList: objectTypes;
@@ -46,22 +43,18 @@ const Dropdowns = ({
   return (
     <S.DropdownsWrapper>
       {React.Children.toArray(
-        Object.keys(datas).map((type) => {
-          const filteredType = type as FilterType;
-
-          return (
-            <Dropdown
-              filterType={filteredType}
-              dataList={filteredType === 'method' ? methodList : materialList}
-              setMethodList={
-                filteredType === 'method' ? setMethodList : undefined
-              }
-              setMaterialList={
-                filteredType === 'material' ? setMaterialList : undefined
-              }
-            />
-          );
-        })
+        datas.map((filteredType) => (
+          <Dropdown
+            filterType={filteredType}
+            dataList={filteredType === 'method' ? methodList : materialList}
+            setMethodList={
+              filteredType === 'method' ? setMethodList : undefined
+            }
+            setMaterialList={
+              filteredType === 'material' ? setMaterialList : undefined
+            }
+          />
+        ))
       )}
       {hasList && (
         <S.ResetButton onClick={onReset}>
