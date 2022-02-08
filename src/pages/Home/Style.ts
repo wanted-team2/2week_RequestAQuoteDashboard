@@ -13,6 +13,13 @@ export const HomeWrapper = styled.div`
   }
 `;
 
+export const TitleWrapper = styled.div`
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 320px;
+    margin: 0 auto;
+  }
+`;
+
 export const Title = styled.div`
   ${({ theme }) => theme.colors.darkGray};
   h1 {

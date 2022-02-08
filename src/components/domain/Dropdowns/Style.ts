@@ -21,4 +21,8 @@ export const ResetButton = styled.button`
     height: 16px;
     margin-right: ${({ theme }) => `${theme.gap.base * 3}px`};
   }
+
+  @media ${({ theme }) => theme.device.mobile} {
+    margin-left: ${({ theme }) => `${theme.gap.base * 3}px`};
+  }
 `;

@@ -35,21 +35,23 @@ const Home = () => {
   return (
     <S.HomeWrapper>
       <Header />
-      <S.Title>
-        <h1>들어온 요청</h1>
-        <div>파트너님에게 딱 맞는 요청서를 찾아보세요.</div>
-      </S.Title>
-      <S.FilterWrapper>
-        <S.FilterTab>
-          <Dropdowns
-            methodList={methodList}
-            materialList={materialList}
-            setMethodList={setMethodList}
-            setMaterialList={setMaterialList}
-          />
-        </S.FilterTab>
-        <Toggle onChange={onToggle} children={'상담 중인 요청만 보기'} />
-      </S.FilterWrapper>
+      <S.TitleWrapper>
+        <S.Title>
+          <h1>들어온 요청</h1>
+          <div>파트너님에게 딱 맞는 요청서를 찾아보세요.</div>
+        </S.Title>
+        <S.FilterWrapper>
+          <S.FilterTab>
+            <Dropdowns
+              methodList={methodList}
+              materialList={materialList}
+              setMethodList={setMethodList}
+              setMaterialList={setMaterialList}
+            />
+          </S.FilterTab>
+          <Toggle onChange={onToggle} children={'상담 중인 요청만 보기'} />
+        </S.FilterWrapper>
+      </S.TitleWrapper>
 
       {filteredCard && (
         <S.CardsContainer>
