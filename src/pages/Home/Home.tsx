@@ -12,7 +12,9 @@ export type objectTypes = {
 
 const Home = () => {
   const [isToggle, setIsToggle] = useState(false);
-  const data = useAxios<ICardData[]>('http://localhost:3001/requests');
+  const data = useAxios<ICardData[]>(
+    'https://requestaquotedashboard.herokuapp.com/requests'
+  );
 
   const [methodList, setMethodList] = useState<objectTypes>({});
   const [materialList, setMaterialList] = useState<objectTypes>({});
