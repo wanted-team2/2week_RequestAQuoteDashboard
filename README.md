@@ -2,7 +2,7 @@
 
 ## 🚀 정보
 
-- [배포주소 바로가기](https://requestaquotedashboard.herokuapp.com/)
+- [배포주소 바로가기](https://requestaquotedashboard.herokuapp.com)
 - [노션 바로가기](https://sleepy-oxygen-343.notion.site/41970b5fee2d45aebd7b01de061039eb)
 
 <br>
@@ -53,23 +53,56 @@ $ yarn start
 #### ✔ 김지영
 - 프로젝트 기초 세팅
 - Heroku 배포
-- Dropdown, Dropdowns 컴포넌트 구현
+- `Dropdown`, `Dropdowns` 컴포넌트 구현
 
 #### ✔ 고병표
- - Card 컴포넌트 구현
+ - `Card` 컴포넌트 구현
     - hover시 보더 스타일 적용
     - status 가 '상담중'일시 상단 버튼표기 
 
 #### ✔ 유제호
-- 헤더, 반응형 구현
+- `Header`, 반응형 구현
 - 체크리스트 상태값에 따라 카드 필터링 로직 구현
-- 
 
 #### ✔ 홍수연
-- Buttons, Toggle 컴포넌트 구현
+- `Buttons`, `Toggle` 컴포넌트 구현
 - 모바일 UI 적용
 
 
 <br>
 
 ## 📈 디렉토리 구조
+```
+.
+├── README.md
+├── build
+│   ├── asset-manifest.json
+│   ├── index.html
+│   ├── robots.txt
+│   └── static
+├── config-overrides.js
+├── mock
+│   └── db.json
+├── package.json
+├── public
+│   ├── index.html
+│   └── robots.txt
+├── server
+│   ├── db.json
+│   └── index.js
+├── src
+│   ├── App.tsx
+│   ├── assets
+│   ├── components
+│   ├── hooks
+│   ├── index.tsx
+│   ├── models
+│   ├── pages
+│   ├── react-app-env.d.ts
+│   ├── setupTests.ts
+│   ├── styles
+│   └── utils
+├── tsconfig.json
+├── tsconfig.paths.json
+└── yarn.lock
+```
