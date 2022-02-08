@@ -1,4 +1,4 @@
-import { objectTypes } from '@components/domain/Dropdowns/Dropdowns';
+import { objectTypes } from '@pages/Home/Home';
 
 export const getObjectLength = <T>(object: T) => Object.keys(object).length;
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { objectTypes } from '@pages/Home/Home';
 import { Dropdown } from '@components/base';
 import { icoRefresh } from '@assets';
 import { getTrutyObjectLength, setAllValueToFalse } from '@utils/functions';
@@ -9,29 +10,26 @@ const datas = {
   material: ['알루미늄', '탄소강', '구리', '합금강', '강철'],
 };
 
+interface DropdownsProps {
+  methodList: objectTypes;
+  materialList: objectTypes;
+  setMethodList: React.Dispatch<React.SetStateAction<objectTypes>>;
+  setMaterialList: React.Dispatch<React.SetStateAction<objectTypes>>;
+}
+
 export type FilterType = 'method' | 'material';
 
-export type objectTypes = {
-  [key: string]: boolean;
-};
-
-const Dropdowns = () => {
-  const [methodList, setMethodList] = useState<objectTypes>({
-    선반: false,
-    밀링: false,
-  });
-  const [materialList, setMaterialList] = useState<objectTypes>({
-    알루미늄: false,
-    탄소강: false,
-    구리: false,
-    합금강: false,
-    강철: false,
-  });
+const Dropdowns = ({
+  methodList,
+  materialList,
+  setMethodList,
+  setMaterialList,
+}: DropdownsProps) => {
   const [hasList, setHasList] = useState(false);
 
   const onReset = () => {
-    setMethodList({ ...setAllValueToFalse(methodList) });
-    setMaterialList({ ...setAllValueToFalse(materialList) });
+    setMethodList((prev) => ({ ...setAllValueToFalse(prev) }));
+    setMaterialList((prev) => ({ ...setAllValueToFalse(prev) }));
   };
 
   useEffect(() => {

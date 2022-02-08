@@ -1,13 +1,31 @@
 import * as S from './Style';
+import { useEffect, useState } from 'react';
 import { Card, EmptyBox, Header, Toggle } from '@components/base';
 import { Dropdowns } from '@components/domain';
 import { ICardData } from '@models/CardData';
 import useAxios from '@hooks/useAxios';
 
-interface HomeProps {}
+export type objectTypes = {
+  [key: string]: boolean;
+};
 
-const Home = ({}: HomeProps) => {
+const Home = () => {
   const data = useAxios<ICardData[]>('http://localhost:3001/requests');
+  const [methodList, setMethodList] = useState<objectTypes>({
+    선반: false,
+    밀링: false,
+  });
+  const [materialList, setMaterialList] = useState<objectTypes>({
+    알루미늄: false,
+    탄소강: false,
+    구리: false,
+    합금강: false,
+    강철: false,
+  });
+
+  useEffect(() => {
+    const total = { method: { ...methodList }, material: { ...materialList } };
+  }, [methodList, materialList]);
 
   return (
     <S.HomeWrapper>
@@ -17,7 +35,12 @@ const Home = ({}: HomeProps) => {
         <div>파트너님에게 딱 맞는 요청서를 찾아보세요.</div>
       </S.Title>
       <S.FilterTab>
-        <Dropdowns />
+        <Dropdowns
+          methodList={methodList}
+          materialList={materialList}
+          setMethodList={setMethodList}
+          setMaterialList={setMaterialList}
+        />
         <Toggle children={'상담 중인 요청만 보기'} />
       </S.FilterTab>
       {data && (

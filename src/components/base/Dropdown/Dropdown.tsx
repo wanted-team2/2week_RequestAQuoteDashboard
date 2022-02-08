@@ -1,9 +1,7 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { Dropbox } from '@components/base';
-import {
-  FilterType,
-  objectTypes,
-} from '@components/domain/Dropdowns/Dropdowns';
+import { objectTypes } from '@pages/Home/Home';
+import { FilterType } from '@components/domain/Dropdowns/Dropdowns';
 import { ReactComponent as ArrowDropdown } from '@assets/arrowDropdown.svg';
 import { getTrutyObjectLength } from '@utils/functions';
 import { useToggle, useClickAway } from '@hooks';
