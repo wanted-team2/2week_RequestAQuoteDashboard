@@ -1,8 +1,10 @@
-const useToggle = ({ initialState = false }) => {
-  const [state, setState] = useState(initialState);
-  const onToggle = useCallback(() => setState(() => !state), [state]);
+import { useCallback, useState } from 'react';
 
-  return {isToggle, onToggle, setState};
+const useToggle = ({ initialState = false }) => {
+  const [isToggle, setState] = useState(initialState);
+  const onToggle = useCallback(() => setState(() => !isToggle), [isToggle]);
+
+  return { isToggle, onToggle, setState };
 };
 
 export default useToggle;

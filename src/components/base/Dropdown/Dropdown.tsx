@@ -31,10 +31,10 @@ const Dropdown = ({
   setMaterialList,
 }: DropdownProps) => {
   const DropdownsRef = useRef(null);
-  const { isToggle, setIsToggle, onToggle } = useToggle(false);
+  const { isToggle, setState, onToggle } = useToggle({ initialState: false });
   const [checkedList, setCheckedList] = useState(0);
 
-  useClickAway(DropdownsRef, () => setIsToggle(false));
+  useClickAway(DropdownsRef, () => setState(false));
 
   const getFilterType = (filterType: FilterType) =>
     filterType === 'method' ? '가공방식' : '재료';

@@ -21,7 +21,9 @@ const Toggle = forwardRef(
     { isToggle, disabled, onChange, name, children, ...props }: ForwardProps,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
-    const [checked, onToggle] = useToggle({ initialState: isToggle });
+    const { isToggle: checked, onToggle } = useToggle({
+      initialState: isToggle,
+    });
     const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
       onToggle();
       onChange && onChange(e);
