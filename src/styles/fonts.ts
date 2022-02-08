@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import { css } from 'styled-components';
 
 export const font12 = (weight: number) => css`
   font-size: 12px;

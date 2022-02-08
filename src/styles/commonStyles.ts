@@ -1,6 +1,6 @@
-import { css } from "styled-components";
+import { css } from 'styled-components';
 
-type flexkey = "start" | "end" | "between" | "around" | "stretch" | "center";
+type flexkey = 'start' | 'end' | 'between' | 'around' | 'stretch' | 'center';
 
 interface flexBoxProps {
   flex?: string;
@@ -13,22 +13,22 @@ type ellipsisProps = 1 | 2;
 
 const getFlexValue = (key: flexkey): string => {
   const flexmap = {
-    start: "flex-start",
-    end: "flex-end",
-    between: "space-between",
-    around: "space-around",
-    stretch: "stretch",
-    center: "center",
+    start: 'flex-start',
+    end: 'flex-end',
+    between: 'space-between',
+    around: 'space-around',
+    stretch: 'stretch',
+    center: 'center',
   };
 
   return flexmap[key];
 };
 
 export const flexbox = ({
-  flex = "flex",
-  fd = "row",
-  jc = "center",
-  ai = "center",
+  flex = 'flex',
+  fd = 'row',
+  jc = 'center',
+  ai = 'center',
 }: flexBoxProps) => {
   return css`
     display: ${flex};
