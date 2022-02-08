@@ -14,6 +14,7 @@ export const Dropbox = styled.div`
   background-color: white;
   ${font14(500)};
   gap: ${({ theme }) => `${theme.gap.base * 2}px`};
+  z-index: 1;
 `;
 
 export const DropboxSet = styled.div`
