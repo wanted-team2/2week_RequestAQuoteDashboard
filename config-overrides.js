@@ -1,16 +1,18 @@
-import { override, addWebpackAlias } from 'customize-cra';
-import { resolve } from 'path';
+/* eslint-disable @typescript-eslint/no-var-requires */
+//
+const { override, addWebpackAlias } = require('customize-cra');
+const path = require('path');
 
-export default override(
+module.exports = override(
   addWebpackAlias({
-    '@': resolve(__dirname, 'src'),
-    '@apis': resolve(__dirname, 'src/apis'),
-    '@assets': resolve(__dirname, 'src/assets'),
-    '@pages': resolve(__dirname, 'src/pages'),
-    '@components': resolve(__dirname, 'src/components'),
-    '@hooks': resolve(__dirname, 'src/hooks'),
-    '@styles': resolve(__dirname, 'src/styles'),
-    '@utils': resolve(__dirname, 'src/utils'),
-    '@models': resolve(__dirname, 'src/models'),
+    '@': path.resolve(__dirname, 'src'),
+    '@apis': path.resolve(__dirname, 'src/apis'),
+    '@assets': path.resolve(__dirname, 'src/assets'),
+    '@pages': path.resolve(__dirname, 'src/pages'),
+    '@components': path.resolve(__dirname, 'src/components'),
+    '@hooks': path.resolve(__dirname, 'src/hooks'),
+    '@styles': path.resolve(__dirname, 'src/styles'),
+    '@utils': path.resolve(__dirname, 'src/utils'),
+    '@models': path.resolve(__dirname, 'src/models'),
   })
 );
