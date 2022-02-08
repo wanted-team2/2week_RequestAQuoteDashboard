@@ -5,9 +5,13 @@ import { font14 } from '@styles/fonts';
 export const HeaderWrapper = styled.div`
   ${boxShadow};
   ${flexbox({ jc: 'between' })};
+  position: fixed;
+  left: 0;
+  top: 0;
   padding: 25px 40px;
   width: 100%;
   height: 70px;
+  z-index: 3;
   background: ${({ theme }) => theme.colors.blue};
   color: ${({ theme }) => theme.colors.white};
   @media ${({ theme }) => theme.device.mobile} {
@@ -56,7 +60,7 @@ export const HeaderMenu = styled.ul`
     transition: 0.45s;
     transform: translateX(-280px);
     width: 280px;
-    height: 100%;
+    height: 100vh;
     background: ${({ theme }) => theme.colors.white};
     color: ${({ theme }) => theme.colors.darkGray};
   }
@@ -131,13 +135,13 @@ export const MenuItem = styled.li`
 
 export const MenuWrapperMobile = styled.div`
   @media ${({ theme }) => theme.device.mobile} {
-    z-index: 1;
+    z-index: 6;
     position: absolute;
     top: 0;
     left: 0;
     display: block;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background: rgba(0, 0, 0, 0.5);
     &.hidden {
       width: 0;
