@@ -1,18 +1,16 @@
-const { override, addWebpackAlias } = require('customize-cra');
-const path = require('path');
-// @NOTE: react-scripts 5에서 아직 craco를 정식지원하지 않으므로 다른 방법 사용
+import { override, addWebpackAlias } from 'customize-cra';
+import { resolve } from 'path';
 
-module.exports = override(
+export default override(
   addWebpackAlias({
-    '@': path.resolve(__dirname, 'src'),
-    '@apis': path.resolve(__dirname, 'src/apis'),
-    '@assets': path.resolve(__dirname, 'src/assets'),
-    '@pages': path.resolve(__dirname, 'src/pages'),
-    '@components': path.resolve(__dirname, 'src/components'),
-    '@hooks': path.resolve(__dirname, 'src/hooks'),
-    '@styles': path.resolve(__dirname, 'src/styles'),
-    '@utils': path.resolve(__dirname, 'src/utils'),
-    '@types': path.resolve(__dirname, 'src/types'),
-    '@stores': path.resolve(__dirname, 'src/stores'),
+    '@': resolve(__dirname, 'src'),
+    '@apis': resolve(__dirname, 'src/apis'),
+    '@assets': resolve(__dirname, 'src/assets'),
+    '@pages': resolve(__dirname, 'src/pages'),
+    '@components': resolve(__dirname, 'src/components'),
+    '@hooks': resolve(__dirname, 'src/hooks'),
+    '@styles': resolve(__dirname, 'src/styles'),
+    '@utils': resolve(__dirname, 'src/utils'),
+    '@models': resolve(__dirname, 'src/models'),
   })
 );

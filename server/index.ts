@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const jsonServer = require('json-server');
-const path = require('path');
+import jsonServer from 'json-server';
+import path from 'path';
 
 const server = jsonServer.create();
 const router = jsonServer.router(path.resolve(__dirname + '/db.json'));

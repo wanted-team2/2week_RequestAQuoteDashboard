@@ -10,8 +10,7 @@
       "@hooks/*": ["src/hooks/*"],
       "@styles/*": ["src/styles/*"],
       "@utils/*": ["src/utils/*"],
-      "@types/*": ["src/types/*"],
-      "@stores/*": ["src/stores/*"]
+      "@models/*": ["src/models/*"],
     }
   }
 }
