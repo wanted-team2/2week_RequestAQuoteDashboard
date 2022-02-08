@@ -1,4 +1,4 @@
-import { objectTypes } from "@components/domain/Dropdowns/Dropdowns";
+import { objectTypes } from '@components/domain/Dropdowns/Dropdowns';
 
 export const getObjectLength = <T>(object: T) => Object.keys(object).length;
 
@@ -15,24 +15,22 @@ export const setAllValueToFalse = (object: objectTypes) => {
 
 export function on<T extends Window | Document | HTMLElement | EventTarget>(
   obj: T | null,
-  ...args: Parameters<T["addEventListener"]> | [string, Function | null, ...any]
+  ...args: Parameters<T['addEventListener']> | [string | null, ...any]
 ): void {
   if (obj && obj.addEventListener) {
     obj.addEventListener(
-      ...(args as Parameters<HTMLElement["addEventListener"]>)
+      ...(args as Parameters<HTMLElement['addEventListener']>)
     );
   }
 }
 
 export function off<T extends Window | Document | HTMLElement | EventTarget>(
   obj: T | null,
-  ...args:
-    | Parameters<T["removeEventListener"]>
-    | [string, Function | null, ...any]
+  ...args: Parameters<T['removeEventListener']> | [string | null, ...any]
 ): void {
   if (obj && obj.removeEventListener) {
     obj.removeEventListener(
-      ...(args as Parameters<HTMLElement["removeEventListener"]>)
+      ...(args as Parameters<HTMLElement['removeEventListener']>)
     );
   }
 }
