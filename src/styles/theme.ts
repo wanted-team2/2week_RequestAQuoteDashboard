@@ -6,10 +6,16 @@ const colors = {
   lightBlue: '#BBDEFB',
   warning: '#FFA000',
   border: '#E5E5E5',
+  white: '#FFF',
+  darkGray: '#323D45',
 };
 
 const size = {
   borderRadius: 4,
+};
+
+const device = {
+  mobile: `(max-width: 768px)`,
 };
 
 const gap = {
@@ -20,6 +26,7 @@ const theme = {
   colors,
   size,
   gap,
+  device,
 };
 
 export type Theme = typeof theme;
