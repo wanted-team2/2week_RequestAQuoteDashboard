@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { Buttons } from '@components/base';
 import * as S from './Style';
 

@@ -1,5 +1,5 @@
-import { flexbox } from "@styles/commonStyles";
-import styled from "styled-components";
+import { flexbox } from '@styles/commonStyles';
+import styled from 'styled-components';
 
 export const DropdownsWrapper = styled.div`
   display: inline-flex;
@@ -11,7 +11,7 @@ export const DropdownsWrapper = styled.div`
 `;
 
 export const ResetButton = styled.button`
-  ${flexbox({ flex: "inline-flex" })};
+  ${flexbox({ flex: 'inline-flex' })};
   height: ${({ theme }) => `${theme.size.buttonHeight}px`};
   margin-left: ${({ theme }) => `${theme.gap.base * 6}px`};
   color: ${({ theme }) => theme.colors.skyBlue};

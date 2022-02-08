@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { Dropdown } from "@components/base";
-import { icoRefresh } from "@assets";
-import { getTrutyObjectLength, setAllValueToFalse } from "@utils/functions";
-import * as S from "./Style";
+import React, { useEffect, useState } from 'react';
+import { Dropdown } from '@components/base';
+import { icoRefresh } from '@assets';
+import { getTrutyObjectLength, setAllValueToFalse } from '@utils/functions';
+import * as S from './Style';
 
 const datas = {
-  method: ["선반", "밀링"],
-  material: ["알루미늄", "탄소강", "구리", "합금강", "강철"],
+  method: ['선반', '밀링'],
+  material: ['알루미늄', '탄소강', '구리', '합금강', '강철'],
 };
 
-export type FilterType = "method" | "material";
+export type FilterType = 'method' | 'material';
 
 export type objectTypes = {
   [key: string]: boolean;
@@ -54,12 +54,12 @@ const Dropdowns = () => {
           return (
             <Dropdown
               filterType={filteredType}
-              dataList={filteredType === "method" ? methodList : materialList}
+              dataList={filteredType === 'method' ? methodList : materialList}
               setMethodList={
-                filteredType === "method" ? setMethodList : undefined
+                filteredType === 'method' ? setMethodList : undefined
               }
               setMaterialList={
-                filteredType === "material" ? setMaterialList : undefined
+                filteredType === 'material' ? setMaterialList : undefined
               }
             />
           );
