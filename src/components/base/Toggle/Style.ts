@@ -56,5 +56,5 @@ export const ToggleSwitch = styled.div`
 export const Text = styled.span`
   ${font14(500)}
   vertical-align: text-top;
-  margin-left: ${theme.gap.base * 3}px;
+  margin-left: ${theme.gap.base * 4}px;
 `;

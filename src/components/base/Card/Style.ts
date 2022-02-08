@@ -23,6 +23,12 @@ export const CardWrapper = styled.div<Wrapper>`
   &:nth-child(3n) {
     margin-right: 0;
   }
+
+  @media ${({ theme }) => theme.device.mobile} {
+    margin-right: 0px;
+    width: 320px;
+    height: 344px;
+  }
 `;
 
 export const TitleBox = styled.div`
@@ -42,6 +48,10 @@ export const Client = styled.div`
   margin-top: ${({ theme }) => `${theme.gap.base}px`};
   margin-bottom: ${({ theme }) => `${theme.gap.base * 6}px`};
   ${font14(500)}
+
+  @media ${({ theme }) => theme.device.mobile} {
+    margin-bottom: ${({ theme }) => `${theme.gap.base * 4}px`};
+  }
 `;
 
 export const Due = styled.p`

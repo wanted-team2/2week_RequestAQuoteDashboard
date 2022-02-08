@@ -43,15 +43,18 @@ const Home = () => {
         <h1>들어온 요청</h1>
         <div>파트너님에게 딱 맞는 요청서를 찾아보세요.</div>
       </S.Title>
-      <S.FilterTab>
-        <Dropdowns
-          methodList={methodList}
-          materialList={materialList}
-          setMethodList={setMethodList}
-          setMaterialList={setMaterialList}
-        />
+      <S.FilterWrapper>
+        <S.FilterTab>
+          <Dropdowns
+            methodList={methodList}
+            materialList={materialList}
+            setMethodList={setMethodList}
+            setMaterialList={setMaterialList}
+          />
+        </S.FilterTab>
         <Toggle onChange={onToggle} children={'상담 중인 요청만 보기'} />
-      </S.FilterTab>
+      </S.FilterWrapper>
+
       {filteredCard && (
         <S.CardsContainer>
           {filteredCard.map((cardInfo) => (

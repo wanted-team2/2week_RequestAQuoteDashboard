@@ -14,4 +14,8 @@ export const Button = styled.button<IBtn>`
     blue ? ({ theme }) => theme.colors.skyBlue : '#fff'};
   padding: ${({ theme }) => `6px ${theme.gap.base * 3}px`};
   margin-right: ${({ theme }) => `${theme.gap.base * 3}px`};
+
+  @media ${({ theme }) => theme.device.mobile} {
+    margin-right: ${({ theme }) => `${theme.gap.base * 2}px`};
+  }
 `;
