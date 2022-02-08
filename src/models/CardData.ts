@@ -1,3 +1,5 @@
+type statusType = '대기중' | '상담중';
+
 export interface ICardData {
   id: number;
   title: string;
@@ -7,5 +9,5 @@ export interface ICardData {
   amount: number;
   method: string[];
   material: string[];
-  status: string;
+  status: statusType;
 }
