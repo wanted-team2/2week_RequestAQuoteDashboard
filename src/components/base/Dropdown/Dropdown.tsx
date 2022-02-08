@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { Dropbox } from '@components/base';
 import { objectTypes } from '@pages/Home/Home';
 import { FilterType } from '@components/domain/Dropdowns/Dropdowns';
-import { ReactComponent as ArrowDropdown } from '@assets/arrowDropdown.svg';
+// import { ReactComponent as ArrowDropdown } from '@assets/arrowDropdown.svg';
 import { getTrutyObjectLength } from '@utils/functions';
 import { useToggle, useClickAway } from '@hooks';
 import * as S from './Style';
@@ -52,7 +52,7 @@ const Dropdown = ({
         {filterTypeToKorean}
         {checkedList > 0 && `(${checkedList})`}
       </span>
-      <ArrowDropdown />
+      {/* <ArrowDropdown /> */}
       {isToggle && (
         <Dropbox
           filterType={filterType}
