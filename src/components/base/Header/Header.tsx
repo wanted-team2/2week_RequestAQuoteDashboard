@@ -16,43 +16,47 @@ const Header = ({ companyName = 'A 가공 업체' }: HeaderProps) => {
 
   const handleToggleMenu = (e: React.MouseEvent<HTMLOrSVGElement>) => {
     const target = e.target as HTMLElement;
-    if (target.classList.contains('toggle-button')) {
-      setSlideToggle(!slideToggle);
+    const targetElem =
+      target.closest('.menu-list') || target.closest('.toggle-button');
+    if (!targetElem) {
       return;
+    }
+    if (targetElem.classList.contains('menu-list')) {
+      return;
+    }
+    if (targetElem) {
+      setSlideToggle(!slideToggle);
     }
   };
 
   return (
     <S.HeaderWrapper>
-      <S.HeaderInner>
-        <S.HeaderRight>
-          <HamburgerMobile
-            className={'toggle-button'}
-            onClick={handleToggleMenu}
-          />
-          <S.Image>
-            <img src={logo} alt="로고" />
-          </S.Image>
-        </S.HeaderRight>
-        <S.MenuWrapperMobile
-          className={`menu-wrapper toggle-button ${
-            slideToggle ? 'show' : 'hidden'
-          }`}
-          onClick={handleToggleMenu}>
-          <S.HeaderMenu>
-            <S.MenuItem>
-              <S.Image>
-                <img src={colorLogo} alt="로고" />
-              </S.Image>
-            </S.MenuItem>
-            <S.MenuItem>
-              <CompanySvg />
-              {companyName}
-            </S.MenuItem>
-            <S.MenuItem>로그아웃</S.MenuItem>
-          </S.HeaderMenu>
-        </S.MenuWrapperMobile>
-      </S.HeaderInner>
+      <S.HeaderRight>
+        <S.HamburgerContainer className={'toggle-button'}>
+          <HamburgerMobile onClick={handleToggleMenu} />
+        </S.HamburgerContainer>
+        <S.Image>
+          <img src={logo} alt="로고" />
+        </S.Image>
+      </S.HeaderRight>
+      <S.MenuWrapperMobile
+        className={`menu-wrapper toggle-button ${
+          slideToggle ? 'show' : 'hidden'
+        }`}
+        onClick={handleToggleMenu}>
+        <S.HeaderMenu className={'menu-list'}>
+          <S.MenuItem>
+            <S.Image>
+              <img src={colorLogo} alt="로고" />
+            </S.Image>
+          </S.MenuItem>
+          <S.MenuItem>
+            <CompanySvg />
+            {companyName}
+          </S.MenuItem>
+          <S.MenuItem>로그아웃</S.MenuItem>
+        </S.HeaderMenu>
+      </S.MenuWrapperMobile>
     </S.HeaderWrapper>
   );
 };
