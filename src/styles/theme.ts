@@ -11,6 +11,8 @@ const colors = {
 };
 
 const size = {
+  buttonWidth: 76,
+  buttonHeight: 32,
   borderRadius: 4,
 };
 

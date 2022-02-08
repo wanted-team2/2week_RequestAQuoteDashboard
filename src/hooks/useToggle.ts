@@ -1,14 +1,8 @@
-import { useCallback, useState } from 'react';
-
-interface Toggle {
-  (): void;
-}
-
-const useToggle = ({ initialState = false }): [boolean, Toggle, object] => {
+const useToggle = ({ initialState = false }) => {
   const [state, setState] = useState(initialState);
   const onToggle = useCallback(() => setState(() => !state), [state]);
 
-  return [state, onToggle, setState];
+  return {isToggle, onToggle, setState};
 };
 
 export default useToggle;
