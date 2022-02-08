@@ -4,6 +4,7 @@ import { Card, EmptyBox, Header, Toggle } from '@components/base';
 import { Dropdowns } from '@components/domain';
 import { ICardData } from '@models/CardData';
 import useAxios from '@hooks/useAxios';
+import { filterCard } from '@utils/functions';
 
 export type objectTypes = {
   [key: string]: boolean;
@@ -23,6 +24,7 @@ const Home = () => {
     강철: false,
   });
 
+  const filteredCard = data && filterCard(data, methodList, materialList);
   useEffect(() => {
     const total = { method: { ...methodList }, material: { ...materialList } };
   }, [methodList, materialList]);
@@ -43,9 +45,9 @@ const Home = () => {
         />
         <Toggle children={'상담 중인 요청만 보기'} />
       </S.FilterTab>
-      {data && (
+      {filteredCard && (
         <S.CardsContainer>
-          {data.map((cardInfo) => (
+          {filteredCard.map((cardInfo) => (
             <Card
               key={cardInfo.id}
               width={366}
@@ -55,7 +57,7 @@ const Home = () => {
           ))}
         </S.CardsContainer>
       )}
-      {!data?.length && <EmptyBox />}
+      {!filteredCard?.length && <EmptyBox />}
     </S.HomeWrapper>
   );
 };
