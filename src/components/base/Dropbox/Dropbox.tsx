@@ -1,40 +1,22 @@
-import React from "react";
-import {
-  FilterType,
-  objectTypes,
-} from "@components/domain/Dropdowns/Dropdowns";
-import * as S from "./Style";
-
-interface DropboxProps {
-  filterType: FilterType;
-  dataList: objectTypes;
-  setMethodList?: React.Dispatch<
-    React.SetStateAction<{
-      [key: string]: boolean;
-    }>
-  >;
-  setMaterialList?: React.Dispatch<
-    React.SetStateAction<{
-      [key: string]: boolean;
-    }>
-  >;
-}
+import React from 'react';
+import { DropdownProps } from '../Dropdown/Dropdown';
+import * as S from './Style';
 
 const Dropbox = ({
   filterType,
   dataList,
   setMethodList,
   setMaterialList,
-}: DropboxProps) => {
+}: DropdownProps) => {
   const onInputChange = (e: React.FormEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
-    if (filterType === "method" && setMethodList) {
+    if (filterType === 'method' && setMethodList) {
       setMethodList((prev) => ({
         ...prev,
         [value]: !prev[value],
       }));
     }
-    if (filterType === "material" && setMaterialList) {
+    if (filterType === 'material' && setMaterialList) {
       setMaterialList((prev) => ({
         ...prev,
         [value]: !prev[value],

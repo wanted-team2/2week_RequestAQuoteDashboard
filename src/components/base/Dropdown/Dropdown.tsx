@@ -9,7 +9,7 @@ import { getTrutyObjectLength } from '@utils/functions';
 import { useToggle, useClickAway } from '@hooks';
 import * as S from './Style';
 
-interface DropdownProps {
+export interface DropdownProps {
   dataList: objectTypes;
   filterType: FilterType;
   setMethodList?: React.Dispatch<
