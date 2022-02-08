@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Buttons } from '@components/base';
 import * as S from './Style';
+import { ICardData } from '@models/CardData';
 
 export interface RequestsType {
   id?: number;
@@ -15,7 +16,7 @@ export interface RequestsType {
 }
 
 export interface CardProps {
-  requests: RequestsType;
+  requests: ICardData;
   width: number | string;
   height: number | string;
 }
