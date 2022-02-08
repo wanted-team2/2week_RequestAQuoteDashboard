@@ -5,6 +5,7 @@ const colors = {
   skyBlue: '#2196F3',
   lightBlue: '#BBDEFB',
   warning: '#FFA000',
+  border: '#E5E5E5',
   white: '#FFF',
   darkGray: '#323D45',
 };
