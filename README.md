@@ -25,8 +25,8 @@ $ yarn install
 3. 서버를 실행합니다.
 
 ```
-$ yarn server
-$ yarn start
+$ yarn start // json-server 실행
+$ yarn start:dev // localhost 싫행
 ```
 <br>
 
