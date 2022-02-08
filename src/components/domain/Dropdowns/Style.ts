@@ -2,7 +2,7 @@ import { flexbox } from "@styles/commonStyles";
 import styled from "styled-components";
 
 export const DropdownsWrapper = styled.div`
-  display: flex;
+  display: inline-flex;
   align-items: center;
   height: 100%;
   & > form:first-of-type {
