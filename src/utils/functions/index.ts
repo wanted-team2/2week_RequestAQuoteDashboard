@@ -1,5 +1,6 @@
 import { objectTypes } from '@pages/Home/Home';
 import { ICardData } from '@models/CardData';
+import { FilterType } from '@components/domain/Dropdowns/Dropdowns';
 
 export const getObjectLength = <T>(object: T) => Object.keys(object).length;
 
@@ -75,7 +76,7 @@ export const filterCard = (
 
 export const makeCheckList = (
   data: ICardData[] | null | undefined,
-  type: 'method' | 'material'
+  type: FilterType
 ) =>
   data
     ? data.reduce((checkList, v) => {
