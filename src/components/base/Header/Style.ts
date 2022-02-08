@@ -5,6 +5,9 @@ import { font14 } from '@styles/fonts';
 export const HeaderWrapper = styled.div`
   ${boxShadow};
   ${flexbox({ jc: 'between' })};
+  position: fixed;
+  left: 0;
+  top: 0;
   padding: 25px 40px;
   width: 100%;
   height: 70px;
