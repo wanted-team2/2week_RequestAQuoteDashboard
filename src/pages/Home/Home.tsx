@@ -1,10 +1,10 @@
 import * as S from './Style';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, EmptyBox, Header, Toggle } from '@components/base';
 import { Dropdowns } from '@components/domain';
 import { ICardData } from '@models/CardData';
 import useAxios from '@hooks/useAxios';
-import { filterCard } from '@utils/functions';
+import { filterCard, makeCheckList } from '@utils/functions';
 
 export type objectTypes = {
   [key: string]: boolean;
@@ -13,17 +13,14 @@ export type objectTypes = {
 const Home = () => {
   const [isToggle, setIsToggle] = useState(false);
   const data = useAxios<ICardData[]>('http://localhost:3001/requests');
-  const [methodList, setMethodList] = useState<objectTypes>({
-    선반: false,
-    밀링: false,
-  });
-  const [materialList, setMaterialList] = useState<objectTypes>({
-    알루미늄: false,
-    탄소강: false,
-    구리: false,
-    합금강: false,
-    강철: false,
-  });
+
+  const [methodList, setMethodList] = useState<objectTypes>({});
+  const [materialList, setMaterialList] = useState<objectTypes>({});
+
+  useEffect(() => {
+    setMethodList(makeCheckList(data, 'method'));
+    setMaterialList(makeCheckList(data, 'material'));
+  }, [data]);
 
   const onToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const isToggle = e.target.checked;
@@ -31,10 +28,7 @@ const Home = () => {
   };
 
   const filteredCard =
-    data &&
-    (isToggle
-      ? data?.filter((v) => v.status === '상담중')
-      : filterCard(data, methodList, materialList));
+    data && filterCard(data, methodList, materialList, isToggle);
 
   return (
     <S.HomeWrapper>

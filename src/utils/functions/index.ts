@@ -39,7 +39,8 @@ export function off<T extends Window | Document | HTMLElement | EventTarget>(
 export const filterCard = (
   data: ICardData[],
   methodList: objectTypes,
-  materialList: objectTypes
+  materialList: objectTypes,
+  isToggle: boolean
 ) => {
   const checkedMethod = Object.entries(methodList)
     .filter(([_, checked]) => checked)
@@ -47,6 +48,10 @@ export const filterCard = (
   const checkedMaterial = Object.entries(materialList)
     .filter(([_, checked]) => checked)
     .map(([key, _]) => key);
+
+  if (isToggle) {
+    data = data.filter(({ status }) => status === '상담중');
+  }
 
   if (checkedMethod.length === 0 && checkedMaterial.length === 0) {
     return data;
@@ -67,3 +72,16 @@ export const filterCard = (
       v.material.filter((char) => checkedMaterial.includes(char)).length
   );
 };
+
+export const makeCheckList = (
+  data: ICardData[] | null | undefined,
+  type: 'method' | 'material'
+) =>
+  data
+    ? data.reduce((checkList, v) => {
+        v[type].forEach((methodItem) => {
+          checkList[methodItem] = false;
+        });
+        return checkList;
+      }, {} as objectTypes)
+    : {};
