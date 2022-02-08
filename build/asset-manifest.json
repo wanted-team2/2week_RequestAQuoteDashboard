@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/static/js/main.a50109fa.js",
+    "index.html": "/index.html",
+    "static/media/company.svg": "/static/media/company.135fb036c7e73a4eec9b941ac825385c.svg",
+    "static/media/hamburger.svg": "/static/media/hamburger.b6fc9e870167432d1084d42aa425a89b.svg",
+    "main.a50109fa.js.map": "/static/js/main.a50109fa.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.a50109fa.js"
+  ]
+}
