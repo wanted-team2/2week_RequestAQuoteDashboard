@@ -1,5 +1,5 @@
 import * as S from './Style';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Card, EmptyBox, Header, Toggle } from '@components/base';
 import { Dropdowns } from '@components/domain';
 import { ICardData } from '@models/CardData';
@@ -11,6 +11,7 @@ export type objectTypes = {
 };
 
 const Home = () => {
+  const [isToggle, setIsToggle] = useState(false);
   const data = useAxios<ICardData[]>('http://localhost:3001/requests');
 
   const [methodList, setMethodList] = useState<objectTypes>({});
@@ -21,7 +22,16 @@ const Home = () => {
     setMaterialList(makeCheckList(data, 'material'));
   }, [data]);
 
-  const filteredCard = data && filterCard(data, methodList, materialList);
+  const onToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const isToggle = e.target.checked;
+    setIsToggle(isToggle);
+  };
+
+  const filteredCard =
+    data &&
+    (isToggle
+      ? data?.filter((v) => v.status === '상담중')
+      : filterCard(data, methodList, materialList));
 
   return (
     <S.HomeWrapper>
@@ -37,7 +47,7 @@ const Home = () => {
           setMethodList={setMethodList}
           setMaterialList={setMaterialList}
         />
-        <Toggle children={'상담 중인 요청만 보기'} />
+        <Toggle onChange={onToggle} children={'상담 중인 요청만 보기'} />
       </S.FilterTab>
       {filteredCard && (
         <S.CardsContainer>
