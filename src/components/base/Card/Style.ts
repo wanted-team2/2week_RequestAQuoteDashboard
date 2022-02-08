@@ -17,6 +17,7 @@ export const CardWrapper = styled.div<Wrapper>`
   &:hover {
     border: 1px solid ${({ theme }) => theme.colors.skyBlue};
   }
+  margin-bottom: 8px;
 `;
 
 export const TitleBox = styled.div`
