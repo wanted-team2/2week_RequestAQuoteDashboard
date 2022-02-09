@@ -33,6 +33,7 @@ $ yarn start:dev // localhost 싫행
 ## 😎 팀원
 
 - [김지영(팀장)](https://github.com/Jeong-jeong)
+  - [회고](https://velog.io/@jeongs/프리온보딩-3번째-과제-회고-2주차-f36olf08) 
 - [고병표](https://github.com/kokoball)
 - [유제호](https://github.com/ludacirs)
 - [홍수연](https://github.com/suyeon-hong)
