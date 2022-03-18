@@ -6,8 +6,9 @@ import { ICardData } from '@models/CardData';
 import useAxios from '@hooks/useAxios';
 import { filterCard, makeCheckList } from '@utils/functions';
 
-export type objectTypes = {
-  [key: string]: boolean;
+export type ListItem = {
+  name: string;
+  checked: boolean;
 };
 
 const Home = () => {
@@ -16,8 +17,8 @@ const Home = () => {
     'https://requestaquotedashboard.herokuapp.com/requests'
   );
 
-  const [methodList, setMethodList] = useState<objectTypes>({});
-  const [materialList, setMaterialList] = useState<objectTypes>({});
+  const [methodList, setMethodList] = useState<ListItem[]>([]);
+  const [materialList, setMaterialList] = useState<ListItem[]>([]);
 
   useEffect(() => {
     setMethodList(makeCheckList(data, 'method'));
