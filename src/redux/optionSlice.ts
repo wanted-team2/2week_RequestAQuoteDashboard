@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from './store';
 
 export type ListItem = {
   name: string;
@@ -42,5 +43,7 @@ const optionSlice = createSlice({
 
 export const { reset, initMaterial, initMethod, changeMethod, changeMaterial } =
   optionSlice.actions;
+
+export const selectOption = (state: RootState) => state.option;
 
 export default optionSlice;

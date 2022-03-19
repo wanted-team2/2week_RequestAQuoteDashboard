@@ -6,7 +6,7 @@ import { ICardData } from '@models/CardData';
 import useAxios from '@hooks/useAxios';
 import { filterCard, makeCheckList } from '@utils/functions';
 import { useAppDispatch, useAppSelector } from '@redux/store';
-import { initMaterial, initMethod } from '@redux/optionSlice';
+import { initMaterial, initMethod, selectOption } from '@redux/optionSlice';
 
 const Home = () => {
   const [isToggle, setIsToggle] = useState(false);
@@ -14,9 +14,8 @@ const Home = () => {
     'https://requestaquotedashboard.herokuapp.com/requests'
   );
   const appDispatch = useAppDispatch();
-  const { method: methodList, material: materialList } = useAppSelector(
-    (state) => state.option
-  );
+  const { method: methodList, material: materialList } =
+    useAppSelector(selectOption);
 
   useEffect(() => {
     appDispatch(initMethod(makeCheckList(data, 'method')));

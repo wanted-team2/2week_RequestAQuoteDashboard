@@ -3,12 +3,17 @@ import { DropdownContainer } from '@components/base';
 import { icoRefresh } from '@assets';
 import * as S from './Style';
 import { useAppDispatch, useAppSelector } from '@redux/store';
-import { changeMaterial, changeMethod, reset } from '@redux/optionSlice';
+import {
+  changeMaterial,
+  changeMethod,
+  reset,
+  selectOption,
+} from '@redux/optionSlice';
 
 export type FilterType = 'method' | 'material';
 
 const Dropdowns = () => {
-  const { method, material } = useAppSelector((state) => state.option);
+  const { method, material } = useAppSelector(selectOption);
   const appDispatch = useAppDispatch();
   const filterMethod = (target: string) => appDispatch(changeMethod(target));
 
