@@ -1,22 +1,16 @@
+import { ListItem } from '@redux/optionSlice';
 import React from 'react';
 import * as S from './Style';
-import { ListItem } from '@pages/Home/Home';
 
 interface DropboxProps {
   items: ListItem[];
-  changeItem: React.Dispatch<React.SetStateAction<ListItem[]>>;
+  changeItem: (value: string) => void;
 }
 
 const Dropbox = ({ items, changeItem }: DropboxProps) => {
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const targetValue = e.target.value;
-    changeItem((prevState) =>
-      prevState.map((state) =>
-        state.name === targetValue
-          ? { ...state, checked: !state.checked }
-          : state
-      )
-    );
+    changeItem(targetValue);
   };
   return (
     <S.Dropbox onClick={(e) => e.stopPropagation()}>

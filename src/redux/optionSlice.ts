@@ -1,5 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ListItem } from '@pages/Home/Home';
+
+export type ListItem = {
+  name: string;
+  checked: boolean;
+};
 
 export interface OptionSliceState {
   method: ListItem[];
@@ -15,16 +19,28 @@ const optionSlice = createSlice({
   name: 'option',
   initialState,
   reducers: {
-    setMethod(state, { payload }: PayloadAction<ListItem>) {
-      console.log(state.method);
+    initMethod(state, { payload }: PayloadAction<ListItem[]>) {
+      state.method = payload;
     },
-    setMaterial(state, { payload }: PayloadAction<ListItem>) {
-      console.log(state.material);
+    initMaterial(state, { payload }: PayloadAction<ListItem[]>) {
+      state.material = payload;
+    },
+    changeMethod(state, { payload }: PayloadAction<string>) {
+      const target = state.method.find(({ name }) => name === payload)!;
+      target.checked = !target.checked;
+    },
+    changeMaterial(state, { payload }: PayloadAction<string>) {
+      const target = state.material.find(({ name }) => name === payload)!;
+      target.checked = !target.checked;
     },
     reset(state) {
-      console.log(state);
+      state.method.forEach((v) => (v.checked = false));
+      state.material.forEach((v) => (v.checked = false));
     },
   },
 });
+
+export const { reset, initMaterial, initMethod, changeMethod, changeMaterial } =
+  optionSlice.actions;
 
 export default optionSlice;

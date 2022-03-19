@@ -1,41 +1,35 @@
 import React from 'react';
-import { ListItem } from '@pages/Home/Home';
 import { DropdownContainer } from '@components/base';
 import { icoRefresh } from '@assets';
-import { setAllValueToFalse } from '@utils/functions';
 import * as S from './Style';
-
-interface DropdownsProps {
-  methodList: ListItem[];
-  materialList: ListItem[];
-  setMethodList: React.Dispatch<React.SetStateAction<ListItem[]>>;
-  setMaterialList: React.Dispatch<React.SetStateAction<ListItem[]>>;
-}
+import { useAppDispatch, useAppSelector } from '@redux/store';
+import { changeMaterial, changeMethod, reset } from '@redux/optionSlice';
 
 export type FilterType = 'method' | 'material';
 
-const Dropdowns = ({
-  methodList,
-  materialList,
-  setMethodList,
-  setMaterialList,
-}: DropdownsProps) => {
+const Dropdowns = () => {
+  const { method, material } = useAppSelector((state) => state.option);
+  const appDispatch = useAppDispatch();
+  const filterMethod = (target: string) => appDispatch(changeMethod(target));
+
+  const filterMaterial = (target: string) =>
+    appDispatch(changeMaterial(target));
+
   const onReset = () => {
-    setMethodList(setAllValueToFalse);
-    setMaterialList(setAllValueToFalse);
+    appDispatch(reset());
   };
 
   return (
     <S.DropdownsWrapper>
       <DropdownContainer
         label={'가공방식'}
-        items={methodList}
-        changeItem={setMethodList}
+        items={method}
+        changeItem={filterMethod}
       />
       <DropdownContainer
         label={'재료'}
-        items={materialList}
-        changeItem={setMaterialList}
+        items={material}
+        changeItem={filterMaterial}
       />
       <S.ResetButton onClick={onReset}>
         <img src={icoRefresh} alt="필터링 리셋" />

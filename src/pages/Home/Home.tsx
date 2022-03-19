@@ -5,24 +5,22 @@ import { Dropdowns } from '@components/domain';
 import { ICardData } from '@models/CardData';
 import useAxios from '@hooks/useAxios';
 import { filterCard, makeCheckList } from '@utils/functions';
-
-export type ListItem = {
-  name: string;
-  checked: boolean;
-};
+import { useAppDispatch, useAppSelector } from '@redux/store';
+import { initMaterial, initMethod } from '@redux/optionSlice';
 
 const Home = () => {
   const [isToggle, setIsToggle] = useState(false);
   const data = useAxios<ICardData[]>(
     'https://requestaquotedashboard.herokuapp.com/requests'
   );
-
-  const [methodList, setMethodList] = useState<ListItem[]>([]);
-  const [materialList, setMaterialList] = useState<ListItem[]>([]);
+  const appDispatch = useAppDispatch();
+  const { method: methodList, material: materialList } = useAppSelector(
+    (state) => state.option
+  );
 
   useEffect(() => {
-    setMethodList(makeCheckList(data, 'method'));
-    setMaterialList(makeCheckList(data, 'material'));
+    appDispatch(initMethod(makeCheckList(data, 'method')));
+    appDispatch(initMaterial(makeCheckList(data, 'material')));
   }, [data]);
 
   const onToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,12 +41,7 @@ const Home = () => {
         </S.Title>
         <S.FilterWrapper>
           <S.FilterTab>
-            <Dropdowns
-              methodList={methodList}
-              materialList={materialList}
-              setMethodList={setMethodList}
-              setMaterialList={setMaterialList}
-            />
+            <Dropdowns />
           </S.FilterTab>
           <Toggle onChange={onToggle} children={'상담 중인 요청만 보기'} />
         </S.FilterWrapper>

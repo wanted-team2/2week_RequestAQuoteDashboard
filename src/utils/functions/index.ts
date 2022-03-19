@@ -1,6 +1,6 @@
-import { ListItem } from '@pages/Home/Home';
 import { ICardData } from '@models/CardData';
 import { FilterType } from '@components/domain/Dropdowns/Dropdowns';
+import { ListItem } from '@redux/optionSlice';
 
 export const setAllValueToFalse = (itemList: ListItem[]) =>
   itemList.map(({ name }) => ({ name, checked: false }));

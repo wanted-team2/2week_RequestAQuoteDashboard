@@ -3,11 +3,11 @@ import { ReactComponent as ArrowDropdown } from '@assets/arrowdown.svg';
 import { useToggle, useClickAway } from '@hooks';
 import * as S from './Style';
 import Dropbox from '../Dropbox/Dropbox';
-import { ListItem } from '@pages/Home/Home';
+import { ListItem } from '@redux/optionSlice';
 
 export interface DropdownListProps {
   items: ListItem[];
-  changeItem: React.Dispatch<React.SetStateAction<ListItem[]>>;
+  changeItem: (value: string) => void;
   label: string;
 }
 
