@@ -10,6 +10,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
   ],
   plugins: ['prettier', '@typescript-eslint'],
+  parser: '@typescript-eslint/parser',
   rules: {
     'prettier/prettier': [
       'error',
@@ -23,8 +24,5 @@ module.exports = {
         arrowParens: 'always',
       },
     ],
-  },
-  parserOptions: {
-    parser: '@typescript-eslint/parser',
   },
 };

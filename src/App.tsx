@@ -1,10 +1,19 @@
 import React from 'react';
 import { Home } from '@pages';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyle, theme } from '@styles';
 
 function App() {
   return (
     <>
-      <Home />
+      <GlobalStyle />
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <Home />
+        </ThemeProvider>
+      </Provider>
     </>
   );
 }
