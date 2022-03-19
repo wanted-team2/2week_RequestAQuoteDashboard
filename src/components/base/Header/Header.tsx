@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as S from './Style';
+
+import useHeaderSlide from './useHeaderSlide';
+import useHeaderResize from './useHeaderResize';
 
 import logo from '@assets/logo.png';
 import colorLogo from '@assets/colorLogo.png';
@@ -11,23 +14,9 @@ interface HeaderProps {
   companyName?: string;
 }
 
-const Header = ({ companyName = 'A 가공 업체' }: HeaderProps) => {
-  const [slideToggle, setSlideToggle] = useState(false);
-
-  const handleToggleMenu = (e: React.MouseEvent<HTMLOrSVGElement>) => {
-    const target = e.target as HTMLElement;
-    const targetElem =
-      target.closest('.menu-list') || target.closest('.toggle-button');
-    if (!targetElem) {
-      return;
-    }
-    if (targetElem.classList.contains('menu-list')) {
-      return;
-    }
-    if (targetElem) {
-      setSlideToggle(!slideToggle);
-    }
-  };
+const Header = ({ companyName }: HeaderProps) => {
+  const { slideToggle, handleToggleMenu } = useHeaderSlide();
+  const headerRef = useHeaderResize();
 
   return (
     <S.HeaderWrapper>
@@ -45,7 +34,7 @@ const Header = ({ companyName = 'A 가공 업체' }: HeaderProps) => {
             slideToggle ? 'show' : 'hidden'
           }`}
           onClick={handleToggleMenu}>
-          <S.HeaderMenu className={'menu-list'}>
+          <S.HeaderMenu className={'menu-list'} ref={headerRef}>
             <S.MenuItem>
               <S.Image>
                 <img src={colorLogo} alt="로고" />

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, EmptyBox, Header, Toggle } from '@components/base';
 import { Dropdowns } from '@components/domain';
 import { ICardData } from '@models/CardData';
-import useAxios from '@hooks/useAxios';
+import { useAxios } from '@hooks';
 import { filterCard, makeCheckList } from '@utils/functions';
 import { useAppDispatch, useAppSelector } from '@redux/store';
 import { initMaterial, initMethod, selectOption } from '@redux/optionSlice';
