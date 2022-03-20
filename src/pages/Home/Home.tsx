@@ -1,26 +1,39 @@
 import * as S from './Style';
-import React, { useEffect, useState } from 'react';
-import { Card, EmptyBox, Header, Toggle } from '@components/base';
+import React, { useState } from 'react';
+import { Card, NotiBox, Header, Toggle } from '@components/base';
 import { Dropdowns } from '@components/domain';
 import { ICardData } from '@models/CardData';
-import { useAxios } from '@hooks';
-import { filterCard, makeCheckList } from '@utils/functions';
-import { useAppDispatch, useAppSelector } from '@redux/store';
-import { initMaterial, initMethod, selectOption } from '@redux/optionSlice';
+import { filterCard } from '@utils/functions';
+import { gql, useQuery } from '@apollo/client';
+import useInitOptions from '@pages/Home/useInitOptions';
 
+export interface CardListQuery {
+  cardList: ICardData[];
+}
+
+const CARD_LIST = gql`
+  query Test {
+    cardList: allRequests {
+      id
+      title
+      client
+      due
+      count
+      amount
+      method
+      material
+      status
+    }
+  }
+`;
 const Home = () => {
   const [isToggle, setIsToggle] = useState(false);
-  const data = useAxios<ICardData[]>(
-    'https://requestaquotedashboard.herokuapp.com/requests'
-  );
-  const appDispatch = useAppDispatch();
-  const { method: methodList, material: materialList } =
-    useAppSelector(selectOption);
+  const { data, error, loading } = useQuery<CardListQuery>(CARD_LIST);
+  const { methodList, materialList } = useInitOptions(data);
 
-  useEffect(() => {
-    appDispatch(initMethod(makeCheckList(data, 'method')));
-    appDispatch(initMaterial(makeCheckList(data, 'material')));
-  }, [data]);
+  if (error) {
+    return <>에러 발생!</>;
+  }
 
   const onToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const isToggle = e.target.checked;
@@ -28,7 +41,12 @@ const Home = () => {
   };
 
   const filteredCard =
-    data && filterCard(data, methodList, materialList, isToggle);
+    data && filterCard(data.cardList, methodList, materialList, isToggle);
+
+  const WaitBox = loading && <NotiBox text={'견적을 불러오는 중입니다.'} />;
+  const EmptyBox = !filteredCard?.length && (
+    <NotiBox text={'조건에 맞는 견적 요청이 없습니다.'} />
+  );
 
   return (
     <S.HomeWrapper>
@@ -45,7 +63,6 @@ const Home = () => {
           <Toggle onChange={onToggle} children={'상담 중인 요청만 보기'} />
         </S.FilterWrapper>
       </S.TitleWrapper>
-
       {filteredCard && (
         <S.CardsContainer>
           {filteredCard.map((cardInfo) => (
@@ -58,7 +75,7 @@ const Home = () => {
           ))}
         </S.CardsContainer>
       )}
-      {!filteredCard?.length && <EmptyBox />}
+      {WaitBox || EmptyBox}
     </S.HomeWrapper>
   );
 };

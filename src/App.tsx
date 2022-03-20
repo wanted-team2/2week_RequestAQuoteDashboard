@@ -4,16 +4,24 @@ import { Provider } from 'react-redux';
 import { store } from '@redux/store';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle, theme } from '@styles';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+
+const client = new ApolloClient({
+  uri: 'http://localhost:3000/',
+  cache: new InMemoryCache(),
+});
 
 function App() {
   return (
     <>
-      <GlobalStyle />
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <Home />
-        </ThemeProvider>
-      </Provider>
+      <ApolloProvider client={client}>
+        <GlobalStyle />
+        <Provider store={store}>
+          <ThemeProvider theme={theme}>
+            <Home />
+          </ThemeProvider>
+        </Provider>
+      </ApolloProvider>
     </>
   );
 }
