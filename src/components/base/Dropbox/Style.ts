@@ -20,4 +20,7 @@ export const Dropbox = styled.div`
 export const DropboxSet = styled.div`
   ${flexbox({ jc: 'start', ai: 'center' })};
   gap: 10px;
+  > * {
+    cursor: pointer;
+  }
 `;

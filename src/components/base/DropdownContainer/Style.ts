@@ -17,7 +17,6 @@ export const Form = styled.form<FormProps>`
   border-radius: ${({ theme }) => `${theme.size.borderRadius}px`};
   background-color: ${({ isChecked, theme }) =>
     isChecked ? theme.colors.blue : 'white'};
-  cursor: pointer;
 
   font-family: 'Roboto', sans-serif;
   ${font12(500)};
