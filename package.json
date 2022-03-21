@@ -41,7 +41,7 @@
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
     "ts-node": "ts-node -r tsconfig-paths/register ./src/index.ts",
-    "server": "json-server ./server/db.json --port 3001",
+    "server": "json-graphql-server ./server/db.json --port 3001",
     "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {

@@ -1,15 +1,12 @@
 const express = require('express');
 const jsonGraphqlExpress = require('json-graphql-server');
-const cors = require('cors');
 const data = require('./db.json');
+const path = require('path');
 
-let corsOptions = {
-  origin: 'http://localhost:3000/',
-};
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-app.use(cors());
+app.use(express.static(path.resolve(__dirname + '/../build/')));
 
 app.use('/graphql', jsonGraphqlExpress.default(data));
 app.listen(PORT);
