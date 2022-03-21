@@ -7,7 +7,7 @@ import { GlobalStyle, theme } from '@styles';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
 const client = new ApolloClient({
-  uri: '/graphql',
+  uri: 'https://quiet-ocean-28779.herokuapp.com/graphql',
   cache: new InMemoryCache(),
 });
 
