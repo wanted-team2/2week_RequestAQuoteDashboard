@@ -68,8 +68,8 @@ export const HeaderMenu = styled.ul`
     ${boxShadow};
     ${flexbox({ fd: 'column', jc: 'start', ai: 'start' })};
     position: absolute;
-    transition: 0.45s;
     transform: translateX(-280px);
+
     width: 280px;
     height: 100vh;
     background: ${({ theme }) => theme.colors.white};

@@ -1,19 +1,12 @@
-const jsonServer = require('json-server');
+const express = require('express');
+const jsonGraphqlExpress = require('json-graphql-server');
+const data = require('./db.json');
 const path = require('path');
 
-const server = jsonServer.create();
-const router = jsonServer.router(path.resolve(__dirname + '/db.json'));
-const middlewares = jsonServer.defaults({
-  static: path.resolve(__dirname + '/../build/'),
-});
+const PORT = process.env.PORT || 3001;
+const app = express();
 
-const port = process.env.PORT || 3001;
+app.use(express.static(path.resolve(__dirname + '/../build/')));
 
-server.use(middlewares);
-
-server.use(jsonServer.bodyParser);
-
-server.use(router);
-server.listen(port, () => {
-  console.log('JSON Server is running');
-});
+app.use('/graphql', jsonGraphqlExpress.default(data));
+app.listen(PORT);

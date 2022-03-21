@@ -1,33 +1,21 @@
+import { ListItem } from '@redux/optionSlice';
 import React from 'react';
-import { DropdownProps } from '../Dropdown/Dropdown';
 import * as S from './Style';
 
-const Dropbox = ({
-  filterType,
-  dataList,
-  setMethodList,
-  setMaterialList,
-}: DropdownProps) => {
-  const onInputChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const { value } = e.currentTarget;
-    if (filterType === 'method' && setMethodList) {
-      setMethodList((prev) => ({
-        ...prev,
-        [value]: !prev[value],
-      }));
-    }
-    if (filterType === 'material' && setMaterialList) {
-      setMaterialList((prev) => ({
-        ...prev,
-        [value]: !prev[value],
-      }));
-    }
-  };
+interface DropboxProps {
+  items: ListItem[];
+  changeItem: (value: string) => void;
+}
 
+const Dropbox = ({ items, changeItem }: DropboxProps) => {
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const targetValue = e.target.value;
+    changeItem(targetValue);
+  };
   return (
     <S.Dropbox onClick={(e) => e.stopPropagation()}>
       {React.Children.toArray(
-        Object.entries(dataList).map(([type, checked]) => {
+        items.map(({ name, checked }) => {
           const isChecked = checked as boolean;
           return (
             <S.DropboxSet>
@@ -35,11 +23,10 @@ const Dropbox = ({
                 onChange={onInputChange}
                 type="checkbox"
                 checked={isChecked}
-                id={type}
-                name={filterType}
-                value={type}
+                id={name}
+                value={name}
               />
-              <label htmlFor={type}>{type}</label>
+              <label htmlFor={name}>{name}</label>
             </S.DropboxSet>
           );
         })

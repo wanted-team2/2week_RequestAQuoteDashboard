@@ -1,62 +1,46 @@
-import React, { useEffect, useState } from 'react';
-import { objectTypes } from '@pages/Home/Home';
-import { Dropdown } from '@components/base';
+import React from 'react';
+import { DropdownContainer } from '@components/base';
 import { icoRefresh } from '@assets';
-import { getTrutyObjectLength, setAllValueToFalse } from '@utils/functions';
 import * as S from './Style';
-
-const datas = ['method', 'material'] as FilterType[];
-
-interface DropdownsProps {
-  methodList: objectTypes;
-  materialList: objectTypes;
-  setMethodList: React.Dispatch<React.SetStateAction<objectTypes>>;
-  setMaterialList: React.Dispatch<React.SetStateAction<objectTypes>>;
-}
+import { useAppDispatch, useAppSelector } from '@redux/store';
+import {
+  changeMaterial,
+  changeMethod,
+  reset,
+  selectOption,
+} from '@redux/optionSlice';
 
 export type FilterType = 'method' | 'material';
 
-const Dropdowns = ({
-  methodList,
-  materialList,
-  setMethodList,
-  setMaterialList,
-}: DropdownsProps) => {
-  const [hasList, setHasList] = useState(false);
+const Dropdowns = () => {
+  const { method, material } = useAppSelector(selectOption);
+  const appDispatch = useAppDispatch();
+  const filterMethod = (target: string) => appDispatch(changeMethod(target));
+
+  const filterMaterial = (target: string) =>
+    appDispatch(changeMaterial(target));
 
   const onReset = () => {
-    setMethodList((prev) => ({ ...setAllValueToFalse(prev) }));
-    setMaterialList((prev) => ({ ...setAllValueToFalse(prev) }));
+    appDispatch(reset());
   };
 
-  useEffect(() => {
-    if (methodList && materialList) {
-      if (
-        getTrutyObjectLength(methodList) === 0 &&
-        getTrutyObjectLength(materialList) === 0
-      ) {
-        setHasList(false);
-      } else setHasList(true);
-    }
-  }, [methodList, materialList]);
+  const flagRest =
+    method.some(({ checked }) => checked) ||
+    material.some(({ checked }) => checked);
 
   return (
     <S.DropdownsWrapper>
-      {React.Children.toArray(
-        datas.map((filteredType) => (
-          <Dropdown
-            filterType={filteredType}
-            dataList={filteredType === 'method' ? methodList : materialList}
-            setMethodList={
-              filteredType === 'method' ? setMethodList : undefined
-            }
-            setMaterialList={
-              filteredType === 'material' ? setMaterialList : undefined
-            }
-          />
-        ))
-      )}
-      {hasList && (
+      <DropdownContainer
+        label={'가공방식'}
+        items={method}
+        changeItem={filterMethod}
+      />
+      <DropdownContainer
+        label={'재료'}
+        items={material}
+        changeItem={filterMaterial}
+      />
+      {flagRest && (
         <S.ResetButton onClick={onReset}>
           <img src={icoRefresh} alt="필터링 리셋" />
           <span>필터링 리셋</span>

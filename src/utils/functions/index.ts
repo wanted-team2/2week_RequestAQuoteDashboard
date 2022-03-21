@@ -1,19 +1,9 @@
-import { objectTypes } from '@pages/Home/Home';
 import { ICardData } from '@models/CardData';
 import { FilterType } from '@components/domain/Dropdowns/Dropdowns';
+import { ListItem } from '@redux/optionSlice';
 
-export const getObjectLength = <T>(object: T) => Object.keys(object).length;
-
-export const getTrutyObjectLength = (object: objectTypes) =>
-  Object.values(object).filter((v) => v).length;
-
-export const setAllValueToFalse = (object: objectTypes) => {
-  const newObject: objectTypes = {};
-  for (const key in object) {
-    newObject[key] = false;
-  }
-  return newObject;
-};
+export const setAllValueToFalse = (itemList: ListItem[]) =>
+  itemList.map(({ name }) => ({ name, checked: false }));
 
 export function on<T extends Window | Document | HTMLElement | EventTarget>(
   obj: T | null,
@@ -39,16 +29,16 @@ export function off<T extends Window | Document | HTMLElement | EventTarget>(
 
 export const filterCard = (
   data: ICardData[],
-  methodList: objectTypes,
-  materialList: objectTypes,
+  methodList: ListItem[],
+  materialList: ListItem[],
   isToggle: boolean
 ) => {
-  const checkedMethod = Object.entries(methodList)
-    .filter(([_, checked]) => checked)
-    .map(([key, _]) => key);
-  const checkedMaterial = Object.entries(materialList)
-    .filter(([_, checked]) => checked)
-    .map(([key, _]) => key);
+  const checkedMethod = methodList
+    .filter(({ checked }) => checked)
+    .map(({ name }) => name);
+  const checkedMaterial = materialList
+    .filter(({ checked }) => checked)
+    .map(({ name }) => name);
 
   if (isToggle) {
     data = data.filter(({ status }) => status === '상담중');
@@ -79,10 +69,12 @@ export const makeCheckList = (
   type: FilterType
 ) =>
   data
-    ? data.reduce((checkList, v) => {
-        v[type].forEach((methodItem) => {
-          checkList[methodItem] = false;
-        });
-        return checkList;
-      }, {} as objectTypes)
-    : {};
+    ? Array.from(
+        data.reduce((checkSet, v) => {
+          v[type].forEach((item) => {
+            checkSet.add(item);
+          });
+          return checkSet;
+        }, new Set<string>())
+      ).map((item) => ({ name: item, checked: false }))
+    : [];
