@@ -17,6 +17,6 @@ const useHeaderSlide = () => {
       setSlideToggle(!slideToggle);
     }
   };
-  return { slideToggle, handleToggleMenu };
+  return { slideToggle, setSlideToggle, handleToggleMenu };
 };
 export default useHeaderSlide;

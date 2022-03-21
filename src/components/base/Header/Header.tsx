@@ -14,9 +14,9 @@ interface HeaderProps {
   companyName?: string;
 }
 
-const Header = ({ companyName }: HeaderProps) => {
-  const { slideToggle, handleToggleMenu } = useHeaderSlide();
-  const headerRef = useHeaderResize();
+const Header = ({ companyName = 'A 가공 업체' }: HeaderProps) => {
+  const { slideToggle, handleToggleMenu, setSlideToggle } = useHeaderSlide();
+  const headerRef = useHeaderResize(setSlideToggle);
 
   return (
     <S.HeaderWrapper>

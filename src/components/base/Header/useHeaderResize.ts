@@ -1,7 +1,9 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import useDebounce from '@hooks/useDebounce';
 
-const useHeaderResize = () => {
+const useHeaderResize = (
+  setSlideToggle: React.Dispatch<React.SetStateAction<boolean>>
+) => {
   const headerRef = useRef<HTMLUListElement>(null);
   const debounce = useDebounce(500);
 
@@ -11,6 +13,7 @@ const useHeaderResize = () => {
         if ((e.target as Window).innerWidth < 768) {
           headerRef.current!.style.transition = '0.45s';
         } else {
+          setSlideToggle(false);
           headerRef.current!.style.transition = 'none';
         }
       });
