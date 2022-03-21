@@ -1,19 +1,15 @@
-const jsonServer = require('json-server');
-const path = require('path');
+const express = require('express');
+const jsonGraphqlExpress = require('json-graphql-server');
+const cors = require('cors');
+const data = require('./db.json');
 
-const server = jsonServer.create();
-const router = jsonServer.router(path.resolve(__dirname + '/db.json'));
-const middlewares = jsonServer.defaults({
-  static: path.resolve(__dirname + '/../build/'),
-});
+let corsOptions = {
+  origin: 'http://localhost:3000/',
+};
+const PORT = process.env.PORT || 3001;
+const app = express();
 
-const port = process.env.PORT || 3001;
+app.use(cors());
 
-server.use(middlewares);
-
-server.use(jsonServer.bodyParser);
-
-server.use(router);
-server.listen(port, () => {
-  console.log('JSON Server is running');
-});
+app.use('/graphql', jsonGraphqlExpress.default(data));
+app.listen(PORT);
