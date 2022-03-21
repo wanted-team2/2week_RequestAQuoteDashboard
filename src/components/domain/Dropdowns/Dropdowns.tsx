@@ -24,6 +24,10 @@ const Dropdowns = () => {
     appDispatch(reset());
   };
 
+  const flagRest =
+    method.some(({ checked }) => checked) ||
+    material.some(({ checked }) => checked);
+
   return (
     <S.DropdownsWrapper>
       <DropdownContainer
@@ -36,10 +40,12 @@ const Dropdowns = () => {
         items={material}
         changeItem={filterMaterial}
       />
-      <S.ResetButton onClick={onReset}>
-        <img src={icoRefresh} alt="필터링 리셋" />
-        <span>필터링 리셋</span>
-      </S.ResetButton>
+      {flagRest && (
+        <S.ResetButton onClick={onReset}>
+          <img src={icoRefresh} alt="필터링 리셋" />
+          <span>필터링 리셋</span>
+        </S.ResetButton>
+      )}
     </S.DropdownsWrapper>
   );
 };
